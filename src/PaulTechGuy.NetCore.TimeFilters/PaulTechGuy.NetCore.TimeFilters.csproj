@@ -1,9 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <IsPackable>true</IsPackable>
+        <PackageTags>c#;library;weekday;date;time;filter;within;core6;net;core</PackageTags>
+        <PackageProjectUrl>https://github.com/paultechguy/NetCore.TimeFilters</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/paultechguy/NetCore.TimeFilters</RepositoryUrl>
+        <Copyright>Copyright (c) 2022 PaulTechGuy</Copyright>
+        <RepositoryType>git</RepositoryType>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <Company>PaulTechGuy</Company>
+        <Authors>PaulTechGuy</Authors>
+        <Description>.NET Core/C# library to check if a DateTime is within search pattern(s).</Description>
+</PropertyGroup>
 </Project>
