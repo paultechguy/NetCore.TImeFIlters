@@ -2,7 +2,7 @@
 
 ## Requirements
 - Windows 10 or higher
-- Visual Studio 2022 with .NET Core 6
+- Visual Studio 2022 with .NET Core
 
 ## WeekdayTimeRange
 This .NET Core library provides the `WeekdayTimeRange` which provides support for filtering a `DateTime` object against one more *day of week* patterns.  A *day of week* pattern contains a weekday or start/end time, or both.  For example, if you want to create a *day of week* filter for Sunday, you could use the following source code:
