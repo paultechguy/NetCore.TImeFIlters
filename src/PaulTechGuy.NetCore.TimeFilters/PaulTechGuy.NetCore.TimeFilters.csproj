@@ -13,5 +13,9 @@
         <Company>PaulTechGuy</Company>
         <Authors>PaulTechGuy</Authors>
         <Description>.NET Core/C# library to check if a DateTime is within search pattern(s).</Description>
+        <Title>Lightweight day of week filter utility.</Title>
+        <Version>1.0.1</Version>
+        <AssemblyVersion>1.0.1</AssemblyVersion>
+        <FileVersion>1.0.1</FileVersion>
 </PropertyGroup>
 </Project>
