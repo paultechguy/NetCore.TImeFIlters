@@ -1,5 +1,7 @@
 # PaulTechGuy.NetCore.TimeFilters
 
+GitHub: [https://github.com/paultechguy/NetCore.TimeFilters](https://github.com/paultechguy/NetCore.TimeFilters)
+
 ## Requirements
 - Windows 10 or higher
 - Visual Studio 2022 with .NET Core
@@ -51,3 +53,11 @@ to modify the .editorConfig file, or remove it entirely from the project.
 
 ## Inspiration
 This class library was a valuable resource for a Windows Service that periodically monitors the computer CPU level. The service needs to bypass the CPU check during certain weekday and/or times of the day.
+
+## Version History
+* 1.0.0 - Initial version
+* 1.0.1
+   + Allow 3-character abbreviations for weekdays
+   + Change Within() method to virtual to allow derviced classes to override
+   + Update unit test nuget packages
+   + Update unit tests
