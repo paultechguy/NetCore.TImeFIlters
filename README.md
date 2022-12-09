@@ -14,8 +14,9 @@ There are several more ways to create a `WeekdayTimeRange`:
     WeekdayTimeRange range = new(DayOfWeek.Sunday, new TimeSpan(1, 2, 3), new TimeSpan(13, 14, 15)); // Sunday 01:02:03 to 13:14:15
     WeekdayTimeRange range = new("Sunday", "01:02:03", "13:14:15");
 
-    WeekdayTimeRange range = new(DayOfWeek.Sunday)
-    WeekdayTimeRange range = new("Sunday")
+    WeekdayTimeRange range = new(DayOfWeek.Sunday);
+    WeekdayTimeRange range = new("Sunday");
+    WeekdayTimeRange range = new("Sun"); // using 3-character abbreviations
 
     WeekdayTimeRange range = new(new TimeSpan(1, 2, 3), new TimeSpan(13, 14, 15)); // 01:02:03 to 13:14:15
     WeekdayTimeRange range = new("01:02:03", "13:14:15");
@@ -24,7 +25,7 @@ There are several more ways to create a `WeekdayTimeRange`:
 You can use several `TryParse` method overides to verify if a text string is a valid `WeekdayTimeRange`:
 
     bool isValid = WeekdayTimeRange.TryParse("Sunday", out var range) ...
-    bool isValid = WeekdayTimeRange.TryParse("Sunday 01:02:03-13:14:15", out var range) ...
+    bool isValid = WeekdayTimeRange.TryParse("Sun 01:02:03-13:14:15", out var range) ...
     bool isValid = WeekdayTimeRange.TryParse("01:02:03-13:14:15", out var range) ...
 
 ## Within

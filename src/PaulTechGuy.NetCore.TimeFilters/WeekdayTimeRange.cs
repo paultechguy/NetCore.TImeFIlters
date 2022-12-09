@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 public class WeekdayTimeRange
 {
-	private const string DayOfWeekPattern = @"Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday";
+	private const string DayOfWeekPattern = @"Monday|Mon|Tuesday|Tue|Wednesday|Wed|Thursday|Thu|Friday|Fri|Saturday|Sat|Sunday|Sun";
 	private const string Time24Pattern = @"([01]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?";
 	private const string DayTimeRangePattern = @$"^\s*(?<Weekday>{DayOfWeekPattern})?\s*((?<Time1>{Time24Pattern})\s*-\s*(?<Time2>{Time24Pattern}))?\s*$";
 	private static readonly Regex RegexDayTimeRange = new(DayTimeRangePattern, RegexOptions.IgnoreCase);
@@ -225,7 +225,7 @@ public class WeekdayTimeRange
 		return true;
 	}
 
-	public bool Within(DateTime time)
+	public virtual bool Within(DateTime time)
 	{
 		bool found = true;
 
@@ -276,6 +276,18 @@ public class WeekdayTimeRange
 		if (string.IsNullOrWhiteSpace(weekday))
 		{
 			return null;
+		}
+
+		// expand any 3-character abbreviations
+		if (weekday.Length == 3)
+		{
+			// if any full weekday names start with the 3-character abbr, use it
+			string? abbrMatch = DayOfWeekPattern.Split('|')
+				.FirstOrDefault(dow => dow.StartsWith(weekday, StringComparison.OrdinalIgnoreCase));
+			if (abbrMatch != null)
+			{
+				weekday = abbrMatch;
+			}
 		}
 
 		bool isValidWeekday = Enum.TryParse(weekday, ignoreCase: true, out DayOfWeek dayOfWeek);

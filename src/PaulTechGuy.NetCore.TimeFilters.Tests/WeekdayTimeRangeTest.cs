@@ -4,6 +4,8 @@ namespace PaulTechGuy.NetCore.TimeFilters.Tests;
 public class WeekdayTimeRangeTest
 {
 	private readonly DayOfWeek validDayOfWeek = DayOfWeek.Sunday;
+	private readonly string validDayOfWeekString = "Sunday";
+	private readonly string validDayOfWeekShortString = "Sun";
 	private readonly TimeSpan validStartTime = new(1, 2, 3);
 	private readonly TimeSpan validEndTime = new(13, 14, 15);
 	private readonly string validAsStringTime;
@@ -43,6 +45,36 @@ public class WeekdayTimeRangeTest
 	{
 		// arrange
 		var range = new WeekdayTimeRange(this.validDayOfWeek);
+
+		// act
+
+		// assert
+		Assert.IsTrue(range.DayOfWeek != null);
+		Assert.IsTrue(range.StartTime == null);
+		Assert.IsTrue(range.EndTime == null);
+		Assert.IsTrue(range.ToString() == this.validDayOfWeek.ToString());
+	}
+
+	[TestMethod]
+	public void DayTimeRange_CtorWithDayOfWeekString_IsValid()
+	{
+		// arrange
+		var range = new WeekdayTimeRange(this.validDayOfWeekString);
+
+		// act
+
+		// assert
+		Assert.IsTrue(range.DayOfWeek != null);
+		Assert.IsTrue(range.StartTime == null);
+		Assert.IsTrue(range.EndTime == null);
+		Assert.IsTrue(range.ToString() == this.validDayOfWeek.ToString());
+	}
+
+	[TestMethod]
+	public void DayTimeRange_CtorWithDayOfWeekShortString_IsValid()
+	{
+		// arrange
+		var range = new WeekdayTimeRange(this.validDayOfWeekShortString);
 
 		// act
 
@@ -179,6 +211,7 @@ public class WeekdayTimeRangeTest
 
 		// act
 		bool isInvalid = days.Any(d => !WeekdayTimeRange.TryParse(d, out _));
+		isInvalid |= days.Any(d => !WeekdayTimeRange.TryParse(d[..3], out _)); // 3-character abbreviations
 
 		// assert
 		Assert.IsTrue(!isInvalid);
@@ -192,6 +225,7 @@ public class WeekdayTimeRangeTest
 
 		// act
 		bool isInvalid = days.Any(d => !WeekdayTimeRange.TryParse(d.ToLower(), out _));
+		isInvalid |= days.Any(d => !WeekdayTimeRange.TryParse(d[..3].ToLower(), out _)); // 3-character abbreviations
 
 		// assert
 		Assert.IsTrue(!isInvalid);
