@@ -58,6 +58,6 @@ This class library was a valuable resource for a Windows Service that periodical
 * 1.0.0 - Initial version
 * 1.0.1
    + Allow 3-character abbreviations for weekdays
-   + Change Within() method to virtual to allow derviced classes to override
+   + Change Within() method to virtual to allow derived classes to override
    + Update unit test nuget packages
    + Update unit tests
