@@ -225,6 +225,23 @@ public class WeekdayTimeRange
 		return true;
 	}
 
+	public virtual bool Within(IEnumerable<DateTime> times, out IEnumerable<DateTime> matches)
+	{
+		// we don't worry about duplicate dates...match all if they exist
+		var foundMatches = new List<DateTime>();
+		foreach (DateTime dt in times)
+		{
+			if (this.Within(dt))
+			{
+				foundMatches.Add(dt);
+			}
+		}
+
+		matches = foundMatches;
+
+		return matches.Any();
+	}
+
 	public virtual bool Within(DateTime time)
 	{
 		bool found = true;

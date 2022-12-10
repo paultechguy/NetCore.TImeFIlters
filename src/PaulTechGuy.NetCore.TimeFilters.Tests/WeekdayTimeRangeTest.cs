@@ -683,4 +683,74 @@ public class WeekdayTimeRangeTest
 		// assert
 		Assert.IsFalse(isValid);
 	}
+
+	[TestMethod]
+	public void DayTimeRange_WithinCollectionReturn1Match_IsFoundTrue()
+	{
+		// arrange
+		var range = new WeekdayTimeRange(DayOfWeek.Friday);
+		var dates = new List<DateTime>()
+		{
+			// Friday matche(s)
+			DateTime.Parse("12/9/2022"),
+
+			// miss(es)
+			DateTime.Parse("11/13/1915"), // saturday
+			DateTime.Parse("7/8/1649"), // sunday
+		};
+
+		// act
+		bool isValid = range.Within(dates, out var matches);
+
+		// assert
+		Assert.IsTrue(isValid);
+		Assert.IsTrue(matches.Count() == 1);
+		Assert.IsTrue(matches.Select(m => m.DayOfWeek == DayOfWeek.Friday).Count() == 1);
+	}
+
+	[TestMethod]
+	public void DayTimeRange_WithinCollectionReturnNMatches_IsFoundTrue()
+	{
+		// arrange
+		var range = new WeekdayTimeRange(DayOfWeek.Friday);
+		var dates = new List<DateTime>()
+		{
+			// Friday matche(s)
+			DateTime.Parse("12/9/2022"),
+			DateTime.Parse("1/7/2022"),
+			DateTime.Parse("8/11/1911"),
+
+			// miss(es)
+			DateTime.Parse("11/13/1915"), // saturday
+			DateTime.Parse("7/8/1649"), // sunday
+		};
+
+		// act
+		bool isValid = range.Within(dates, out var matches);
+
+		// assert
+		Assert.IsTrue(isValid);
+		Assert.IsTrue(matches.Count() == 3);
+		Assert.IsTrue(matches.Select(m => m.DayOfWeek == DayOfWeek.Friday).Count() == 3);
+	}
+
+	[TestMethod]
+	public void DayTimeRange_WithinCollectionReturnNoMatches_IsFoundFalse()
+	{
+		// arrange
+		var range = new WeekdayTimeRange(DayOfWeek.Friday);
+		var dates = new List<DateTime>()
+		{
+			// miss(es)
+			DateTime.Parse("11/13/1915"), // saturday
+			DateTime.Parse("7/8/1649"), // sunday
+		};
+
+		// act
+		bool isValid = range.Within(dates, out var matches);
+
+		// assert
+		Assert.IsFalse(isValid);
+		Assert.IsFalse(matches.Any());
+	}
 }
