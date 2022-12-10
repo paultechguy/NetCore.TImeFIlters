@@ -61,3 +61,6 @@ This class library was a valuable resource for a Windows Service that periodical
    + Change Within() method to virtual to allow derived classes to override
    + Update unit test nuget packages
    + Update unit tests
+* 1.x.x (no nuget packages yet)
+   + Add additional Within() to match on a collection of DateTime and return matches
+   + Add additional unit tests for new Within() method
