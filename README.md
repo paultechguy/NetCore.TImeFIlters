@@ -35,6 +35,27 @@ Once you have a filter, you can determine if a `DateTime` object is *within* the
 
     if (range.Within(DateTime.Now)) ...
 
+You can also determine if a collection of `DateTime` objects is *within* a filter range, and have the
+`DateTime` matches returned as part of the same method call:
+
+    // determine if a Friday WeekdayTimeRange matches a
+    // collection of DateTime objects
+    var range = new WeekdayTimeRange(DayOfWeek.Friday);
+    var dates = new List<DateTime>()
+    {
+        // Friday matche(s)
+        DateTime.Parse("12/9/2022"),
+        DateTime.Parse("1/7/2022"),
+        DateTime.Parse("8/11/1911"),
+
+        // miss(es)
+        DateTime.Parse("11/13/1915"), // saturday
+        DateTime.Parse("7/8/1649"), // sunday
+    };
+
+    // returns true with matches count = 3
+    bool isValid = range.Within(dates, out var matches);
+
 ## WeekdayTimeRangeCollection
 You can determine if a `DateTime` object is within a collection of *day of week* filters using:
 
